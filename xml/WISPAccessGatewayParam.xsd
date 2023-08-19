@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="WISPAccessGatewayParam">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="Redirect" type="RedirectType"/>
+				<xs:element name="Proxy" type="ProxyType"/>
+				<xs:element name="AuthenticationReply" type="AuthenticationReplyType"/>
+				<xs:element name="AuthenticationPollReply" type="AuthenticationPollReplyType"/>
+				<xs:element name="LogoffReply" type="LogoffReplyType"/>
+				<xs:element name="AbortLoginReply" type="AbortLoginReplyType"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="AbortLoginURLType">
+		<xs:restriction base="xs:anyURI"/>
+	</xs:simpleType>
+	<xs:simpleType name="NextURLType">
+		<xs:restriction base="xs:anyURI"/>
+	</xs:simpleType>
+	<xs:simpleType name="AccessProcedureType">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="AccessLocationType">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="LocationNameType">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="LoginURLType">
+		<xs:restriction base="xs:anyURI"/>
+	</xs:simpleType>
+	<xs:simpleType name="MessageTypeType">
+		<xs:restriction base="xs:integer"/>
+	</xs:simpleType>
+	<xs:simpleType name="ResponseCodeType">
+		<xs:restriction base="xs:integer"/>
+	</xs:simpleType>
+	<xs:simpleType name="ReplyMessageType">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="LoginResultsURLType">
+		<xs:restriction base="xs:anyURI"/>
+	</xs:simpleType>
+	<xs:simpleType name="LogoffURLType">
+		<xs:restriction base="xs:anyURI"/>
+	</xs:simpleType>
+	<xs:simpleType name="DelayType">
+		<xs:restriction base="xs:integer"/>
+	</xs:simpleType>
+	<xs:complexType name="RedirectType">
+		<xs:all>
+			<xs:element name="AccessProcedure" type="AccessProcedureType"/>
+			<xs:element name="AccessLocation" type="AccessLocationType"/>
+			<xs:element name="LocationName" type="LocationNameType"/>
+			<xs:element name="LoginURL" type="LoginURLType"/>
+			<xs:element name="AbortLoginURL" type="AbortLoginURLType"/>
+			<xs:element name="MessageType" type="MessageTypeType"/>
+			<xs:element name="ResponseCode" type="ResponseCodeType"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="ProxyType">
+		<xs:all>
+			<xs:element name="MessageType" type="MessageTypeType"/>
+			<xs:element name="ResponseCode" type="ResponseCodeType"/>
+			<xs:element name="NextURL" type="NextURLType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="Delay" type="DelayType" minOccurs="0" maxOccurs="1"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="AuthenticationReplyType">
+		<xs:all>
+			<xs:element name="MessageType" type="MessageTypeType"/>
+			<xs:element name="ResponseCode" type="ResponseCodeType"/>
+			<xs:element name="ReplyMessage" type="ReplyMessageType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="LoginResultsURL" type="LoginResultsURLType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="LogoffURL" type="LogoffURLType" minOccurs="0" maxOccurs="1"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="AuthenticationPollReplyType">
+		<xs:all>
+			<xs:element name="MessageType" type="MessageTypeType"/>
+			<xs:element name="ResponseCode" type="ResponseCodeType"/>
+			<xs:element name="ReplyMessage" type="ReplyMessageType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="Delay" type="DelayType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="LogoffURL" type="LogoffURLType" minOccurs="0" maxOccurs="1"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="LogoffReplyType">
+		<xs:sequence>
+			<xs:element name="MessageType" type="MessageTypeType"/>
+			<xs:element name="ResponseCode" type="ResponseCodeType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AbortLoginReplyType">
+		<xs:sequence>
+			<xs:element name="MessageType" type="MessageTypeType"/>
+			<xs:element name="ResponseCode" type="ResponseCodeType"/>
+			<xs:element name="LogoffURL" type="LogoffURLType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,22 @@
+<HTML> <!--
+<?xml version="1.0" encoding="UTF-8"?>
+  <WISPAccessGatewayParam
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="http://$(hostname)/xml/WISPAccessGatewayParam.xsd">
+    <AuthenticationReply>
+	<MessageType>120</MessageType>
+	<ResponseCode>
+$(if error-type == 'radius-timeout')
+		102
+$(else)
+		100
+$(endif)
+	</ResponseCode>
+$(if error)		<ReplyMessage>$(error)</ReplyMessage>		$(endif)
+$(if radius18[1])	<ReplyMessage>$(radius18[1])</ReplyMessage>	$(endif)
+$(if radius18[2])	<ReplyMessage>$(radius18[2])</ReplyMessage>	$(endif)
+$(if radius18[3])	<ReplyMessage>$(radius18[3])</ReplyMessage>	$(endif)
+$(if radius18[4])	<ReplyMessage>$(radius18[4])</ReplyMessage>	$(endif)
+    </AuthenticationReply>
+  </WISPAccessGatewayParam>
+--> </HTML>
